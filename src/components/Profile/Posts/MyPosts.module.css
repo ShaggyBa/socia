@@ -1,0 +1,18 @@
+.container {
+	margin-top: 1.5em;
+}
+
+.posts {
+	border-top: 2px solid #000;
+	border-bottom: 2px solid #000;
+}
+
+.my__posts {
+	font-size: 22px;
+	font-weight: 600;
+}
+
+.new__posts {
+	font-size: 20px;
+	font-weight: 400;
+}
