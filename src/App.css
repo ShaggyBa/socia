@@ -1,15 +1,20 @@
 .app-wrapper {
-	background-color: rgb(61, 75, 78);
-	min-height: 100vh;
+    background-color: rgb(61, 75, 78);
+    min-height: 100vh;
 }
 
 .container {
-	display: grid;
-	grid-template-areas:
-		"header header"
-		"sidebar main"
-		"sidebar main";
-	max-width: 70%;
-	margin: 0 auto;
-	padding: 0 15px;
+    display: grid;
+    grid-template-areas:
+		"header header header header"
+		"sidebar main main main"
+		"sidebar main main main";
+    grid-template-columns: 1fr 5fr;
+    max-width: 70%;
+    margin: 0 auto;
+}
+
+.app-wrapper-content {
+    grid-area: main;
+    background-color: blueviolet;
 }
