@@ -1,0 +1,19 @@
+.itemList {
+    margin-right: 1rem;
+}
+
+.itemList:last-child {
+    margin-right: 0;
+}
+
+.friendImg {
+    background-color: gray;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.friendName {
+    margin-top: .5rem;
+    text-align: center;
+}
