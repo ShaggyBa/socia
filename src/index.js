@@ -3,20 +3,39 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 
-import {state} from "./State";
+import {state, store} from "./state";
 import {BrowserRouter} from "react-router-dom";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-export const rerenderEntireTree = () => {
+// export const rerenderEntireTree = () => {
+//     root.render
+//     (
+//         <React.StrictMode>
+//             <BrowserRouter>
+//                 <App data={state}/>
+//             </BrowserRouter>
+//         </React.StrictMode>
+//     )
+// }
+// state.subscribe(rerenderEntireTree)
+// rerenderEntireTree()
+
+
+export const rerenderEntireTree = (props) => {
     root.render
     (
         <React.StrictMode>
             <BrowserRouter>
-                <App data={state}/>
+                <App
+                    data={store.getState()}
+                    dispatch={store.dispatch.bind(store)}
+                    values={store.values}
+                />
             </BrowserRouter>
         </React.StrictMode>
     )
 }
-state.subscribe(rerenderEntireTree)
-rerenderEntireTree()
+
+rerenderEntireTree(store.getState())
+store.subscribe(rerenderEntireTree)

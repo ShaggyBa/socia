@@ -15,11 +15,11 @@ const MyPosts = (props) => {
 
     const textAreaRef = createRef()
     const addPost = () => {
-        props.functions.addPost(textAreaRef.current.value)
+        props.dispatch({type: "ADD-POST"})
     }
 
     const onPostChange = () => {
-        props.functions.updateNewPostText(textAreaRef.current.value)
+        props.dispatch({type: "UPDATE-NEW-POST-TEXT", value: textAreaRef.current.value})
     }
 
     return (
@@ -29,7 +29,7 @@ const MyPosts = (props) => {
                 <div className={posts.new__posts}>
                     <textarea className={posts.btnTextArea}
                               onChange={onPostChange}
-                              ref={textAreaRef} value={props.valueState.postState}/>
+                              ref={textAreaRef} value={props.values.postState}/>
                     <button className={posts.btnAdd} onClick={addPost}>Add</button>
                 </div>
                 <div className={posts.posts}>
