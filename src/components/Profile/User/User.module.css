@@ -1,0 +1,38 @@
+.user__profile {
+    display: grid;
+    width: 100%;
+    grid-template-areas:
+	"user__img user__name"
+	"user__img user__status"
+	"user__info user__info";
+}
+
+.user__name {
+    grid-area: user__name;
+    font-size: 22px;
+    font-weight: 600;
+    padding-top: .5rem;
+}
+
+.user__status {
+	grid-area: user__status;
+    font-style: italic;
+    font-size: 18px;
+}
+
+.user__img {
+    grid-area: user__img;
+}
+
+.user__img img {
+    height: 100%;
+    width: 75%;
+    border-radius: 50%;
+}
+
+.user__info {
+    margin-top: 3rem;
+    grid-area: user__info;
+}
+
+

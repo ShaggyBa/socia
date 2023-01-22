@@ -1,0 +1,45 @@
+.sidebar {
+    grid-area: sidebar;
+    background-color: rgb(142, 142, 240);
+    text-align: center;
+    padding: 0 15px;
+}
+
+.sidebar > * {
+    font-size: 22px;
+}
+
+.sidebar__link {
+    display: block;
+    text-decoration: none;
+    color: black;
+    margin: .5em 0;
+    font-weight: 600;
+    transition: color .15s linear;
+}
+
+.sidebar__link:hover {
+    color: #fff;
+}
+
+.active {
+    display: block;
+    text-decoration: underline;
+    color: white;
+    margin: .5em 0;
+    font-weight: 600;
+    transition: color .15s linear;
+}
+
+.windowFriends {
+    font-size: 28px;
+    text-align: left;
+	margin-top: 4rem;
+}
+
+.friendsList {
+    display: flex;
+    margin-top: 1rem;
+    font-size: 12px;
+    justify-content: center;
+}

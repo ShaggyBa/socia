@@ -1,6 +1,7 @@
 import React, {createRef} from "react"
 import posts from "./MyPosts.module.css"
 import Post from "./Post/Post"
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profileReducer";
 
 
 // Необходимо добавить рядом с никнеймом автора поста его изображение
@@ -14,12 +15,13 @@ const MyPosts = (props) => {
     })
 
     const textAreaRef = createRef()
+
     const addPost = () => {
-        props.dispatch({type: "ADD-POST"})
+        props.dispatch(addPostActionCreator())
     }
 
     const onPostChange = () => {
-        props.dispatch({type: "UPDATE-NEW-POST-TEXT", value: textAreaRef.current.value})
+        props.dispatch(updateNewPostTextActionCreator(textAreaRef.current.value))
     }
 
     return (

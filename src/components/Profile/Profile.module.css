@@ -1,0 +1,11 @@
+.container {
+	background-color: dodgerblue;
+	padding: 1em;
+	border: 1px solid darkslateblue;
+}
+
+.user__img img {
+	border-image-repeat: none;
+	height: auto;
+	width: 15%;
+}
