@@ -1,7 +1,18 @@
+import dialogsData from "../data/messagesData/DialogsData";
+import messagesData from "../data/messagesData/MessagesData";
+
 const SEND_MESSAGE_FROM_DIALOG = "SEND-MESSAGE-FROM-DIALOG"
 const UPDATE_NEW_MESSAGE_STATE = "UPDATE-NEW-MESSAGE-STATE"
 
-const dialogReducer = (state, action) => {
+
+const dialogPage = {
+    dialogsData, //Данные о диалогах
+    messagesData, //Данные о сообщениях
+    values: {
+        newMessageState: ""
+    }
+}
+const dialogReducer = (state = dialogPage, action) => {
     // eslint-disable-next-line default-case
     switch (action.type) {
         case SEND_MESSAGE_FROM_DIALOG:

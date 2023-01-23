@@ -17,7 +17,7 @@ export const store = {
                     postState: ""
                 }
             },
-        messages:
+        dialogsPage:
             {
                 dialogsData, //Данные о диалогах
                 messagesData, //Данные о сообщениях
@@ -47,7 +47,7 @@ export const store = {
 
     dispatch(action) { //Все состояния меняются только через dispatch(action)
         this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.messages = dialogReducer(this._state.messages, action)
+        this._state.dialogsPage = dialogReducer(this._state.dialogsPage, action)
 
         this._callSubscriber(this._state)
     }

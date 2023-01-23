@@ -1,12 +1,12 @@
 import React, {createRef} from "react"
 import posts from "./MyPosts.module.css"
 import Post from "./Post/Post"
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profileReducer";
 
-
-// Необходимо добавить рядом с никнеймом автора поста его изображение
 const MyPosts = (props) => {
-    const getData = props.postsData.map((post) => {
+
+    const textAreaValue = props.state.values.postState
+
+    const getData = props.state.postsData.map((post) => {
         return <Post post__authorName={post.post__authorName}
                      post__authorImage={post.post__authorImage}
                      post__text={post.post__text}
@@ -16,12 +16,12 @@ const MyPosts = (props) => {
 
     const textAreaRef = createRef()
 
-    const addPost = () => {
-        props.dispatch(addPostActionCreator())
+    const onAddPost = () => {
+        props.addPost()
     }
 
     const onPostChange = () => {
-        props.dispatch(updateNewPostTextActionCreator(textAreaRef.current.value))
+        props.updateNewPost(textAreaRef.current.value)
     }
 
     return (
@@ -31,8 +31,8 @@ const MyPosts = (props) => {
                 <div className={posts.new__posts}>
                     <textarea className={posts.btnTextArea}
                               onChange={onPostChange}
-                              ref={textAreaRef} value={props.values.postState}/>
-                    <button className={posts.btnAdd} onClick={addPost}>Add</button>
+                              ref={textAreaRef} value={textAreaValue}/>
+                    <button className={posts.btnAdd} onClick={onAddPost}>Add</button>
                 </div>
                 <div className={posts.posts}>
                     {getData}

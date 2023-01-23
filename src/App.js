@@ -8,26 +8,25 @@ import Settings from "./components/Settings/Settings";
 import Videos from "./components/Videos/Videos";
 import Music from "./components/Music/Music";
 import Community from "./components/Community/Community";
+import DialogsContainer from "./components/Dialogs/Dialogs-container";
 
 const App = (props) => {
     return (
         <div className="app-wrapper">
             <div className="container">
                 <Header/>
-                <Sidebar data={props.data.sidebar}/>
+                <Sidebar data={props.data.sidebarPage}/>
                 <div className={"app-wrapper-content"}>
                     <Routes>
                         <Route path="/*" element={
                             <Profile
-                                data={props.data.profilePage}
-                                dispatch={props.dispatch}
-                                values={props.data.profilePage.values}
+                                store={props.store}
+
                             />}/>
                         <Route path="/dialogs/*" element={
-                            <Dialogs
-                                data={props.data.messages}
-                                dispatch={props.dispatch}
-                                values={props.data.messages.values}
+                            <DialogsContainer
+                                store={props.store}
+
                             />}/>
                         <Route path="/community" element={<Community/>}/>
                         <Route path="/music" element={<Music/>}/>

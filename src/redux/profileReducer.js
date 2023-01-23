@@ -1,7 +1,18 @@
+import users from "../data/profileData/UserData";
+import postsData from "../data/profileData/Posts/PostsData";
+
 const ADD_POST = "ADD-POST"
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
 
-const profileReducer = (state, action) => {
+
+const profilePage = {
+    users, //Данные о пользователях
+    postsData, //Данные о постах
+    values: {
+        postState: ""
+    }
+}
+const profileReducer = (state = profilePage, action) => {
     // eslint-disable-next-line default-case
     switch (action.type) {
         case ADD_POST:
