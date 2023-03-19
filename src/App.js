@@ -2,7 +2,6 @@ import './App.css';
 import Header from './components/Header/Header'
 import Profile from './components/Profile/Profile';
 import Sidebar from './components/Sidebar/Sidebar';
-import Dialogs from "./components/Dialogs/Dialogs";
 import {Routes, Route} from "react-router-dom";
 import Settings from "./components/Settings/Settings";
 import Videos from "./components/Videos/Videos";
@@ -15,19 +14,13 @@ const App = (props) => {
         <div className="app-wrapper">
             <div className="container">
                 <Header/>
-                <Sidebar data={props.data.sidebarPage}/>
+                <Sidebar data={props.store.getState().sidebarPage}/>
                 <div className={"app-wrapper-content"}>
                     <Routes>
                         <Route path="/*" element={
-                            <Profile
-                                store={props.store}
-
-                            />}/>
+                            <Profile/>}/>
                         <Route path="/dialogs/*" element={
-                            <DialogsContainer
-                                store={props.store}
-
-                            />}/>
+                            <DialogsContainer/>}/>
                         <Route path="/community" element={<Community/>}/>
                         <Route path="/music" element={<Music/>}/>
                         <Route path="/videos" element={<Videos/>}/>
