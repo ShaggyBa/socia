@@ -16,14 +16,17 @@ const dialogReducer = (state = dialogPage, action) => {
     // eslint-disable-next-line default-case
     switch (action.type) {
         case SEND_MESSAGE_FROM_DIALOG:
-            state.messagesData.push({text: state.values.newMessageState})
-            state.values.newMessageState = ""
-            return state
+            return {
+					...state, 
+					messagesData: [
+						...state.messagesData, 
+						{id: state.messagesData.length + 1, text: state.values.newMessageState}
+					], 
+					values: {newMessageState: ""}}
         case UPDATE_NEW_MESSAGE_STATE:
-            state.values.newMessageState = action.value
-            return state
+            return {...state, values: {newMessageState: action.value}}
         default:
-            return state
+            return {...state}
     }
 
 }

@@ -1,38 +1,41 @@
 .user__profile {
-    display: grid;
-    width: 100%;
-    grid-template-areas:
-	"user__img user__name"
-	"user__img user__status"
-	"user__info user__info";
-}
+	padding: 1rem;
+	display: flex;
+	align-items: center;
+	column-gap: 5rem;
+	color: #e4e4e4;
 
-.user__name {
-    grid-area: user__name;
-    font-size: 22px;
-    font-weight: 600;
-    padding-top: .5rem;
-}
-
-.user__status {
-	grid-area: user__status;
-    font-style: italic;
-    font-size: 18px;
+	max-width: 750px;
 }
 
 .user__img {
-    grid-area: user__img;
+	display: flex;
+	justify-content: center;
+	height: 200px;
+	width: 200px;
+
+	flex-shrink: 0;
+	border: 1px solid #292929;
+	border-radius: 50%;
+
+	overflow: hidden;
 }
 
 .user__img img {
-    height: 100%;
-    width: 75%;
-    border-radius: 50%;
+	width: 100%;
+	height: 100%;
+}
+
+.user__name {
+	font-size: 22px;
+	font-weight: 600;
+}
+
+.user__status {
+	flex-grow: 1;
 }
 
 .user__info {
-    margin-top: 3rem;
-    grid-area: user__info;
+	margin-top: 3rem;
+	font-size: 12px;
 }
-
-

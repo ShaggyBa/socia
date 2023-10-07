@@ -13,7 +13,6 @@ const profilePage = {
     }
 }
 const profileReducer = (state = profilePage, action) => {
-    // eslint-disable-next-line default-case
     switch (action.type) {
         case ADD_POST:
             const newPost = { //Создание нового поста
@@ -24,14 +23,12 @@ const profileReducer = (state = profilePage, action) => {
                 post__likes: 0,
                 post__images: ""
             }
-            state.postsData.unshift(newPost) //Добавление нового поста в начало списка постов
-            state.values.postState = "" //Обнуление состояния текстового поля
-            return state
+
+            return {...state, postsData: [newPost, ...state.postsData], values: {postState: ""}}
         case UPDATE_NEW_POST_TEXT:
-            state.values.postState = action.value
-            return state
+            return {...state, values: {postState: action.value}}
         default:
-            return state
+            return {...state}
     }
 }
 

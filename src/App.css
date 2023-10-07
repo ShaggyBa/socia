@@ -1,20 +1,27 @@
 .app-wrapper {
-    background-color: rgb(61, 75, 78);
-    min-height: 100vh;
+	background-color: rgb(23, 23, 23);
+	min-height: 100vh;
 }
 
 .container {
-    display: grid;
-    grid-template-areas:
-		"header header header header"
-		"sidebar main main main"
-		"sidebar main main main";
-    grid-template-columns: 1fr 5fr;
-    max-width: 70%;
-    margin: 0 auto;
+	padding-top: 5vh;
+	margin: 0 auto;
+
+	width: 70%;
+
+	display: flex;
+	justify-content: center;
+	gap: .5rem;
 }
 
 .app-wrapper-content {
-    grid-area: main;
-    background-color: blueviolet;
+	height: 100%;
+	margin-top: 1rem;
+	background-color: rgb(23, 23, 23);
+}
+
+.block {
+	background-color: rgb(36, 35, 37);
+	border-radius: 10px;
+	border: 1px solid #292929;
 }

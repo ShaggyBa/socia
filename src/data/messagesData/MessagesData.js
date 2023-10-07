@@ -1,6 +1,6 @@
 const messages__data = [
-    {text: "Привет"},
-    {text: "Как ты?"},
-    {text: "Еще не спишь?"}
+    {id: 1, text: "Привет"},
+    {id:2 ,text: "Как ты?"},
+    {id:3,text: "Еще не спишь?"}
 ]
 export default messages__data

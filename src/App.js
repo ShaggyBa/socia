@@ -1,20 +1,20 @@
 import './App.css';
 import Header from './components/Header/Header'
 import Profile from './components/Profile/Profile';
-import Sidebar from './components/Sidebar/Sidebar';
+import SidebarContainer from './components/Sidebar/Sidebar-container';
 import {Routes, Route} from "react-router-dom";
 import Settings from "./components/Settings/Settings";
 import Videos from "./components/Videos/Videos";
 import Music from "./components/Music/Music";
 import Community from "./components/Community/Community";
-import DialogsContainer from "./components/Dialogs/Dialogs-container";
+import DialogsContainer from './components/Dialogs/Dialogs-container';
 
 const App = (props) => {
     return (
         <div className="app-wrapper">
-            <div className="container">
                 <Header/>
-                <Sidebar data={props.store.getState().sidebarPage}/>
+            <div className="container">
+                <SidebarContainer />
                 <div className={"app-wrapper-content"}>
                     <Routes>
                         <Route path="/*" element={

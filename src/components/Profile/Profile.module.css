@@ -1,7 +1,6 @@
 .container {
-	background-color: dodgerblue;
+	background-color: transparent;
 	padding: 1em;
-	border: 1px solid darkslateblue;
 }
 
 .user__img img {

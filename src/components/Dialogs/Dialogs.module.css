@@ -1,45 +1,42 @@
-.big {
-    font-size: 30px;
+.container {
+	background-color: transparent;
+	padding: 1em;
 }
 
 .dialogs {
-    display: grid;
-    grid-template-columns: 2fr 5fr;
-    grid-column-gap: 1rem;
-    padding: 1em;
+	display: grid;
+	grid-template-columns: 2fr 5fr;
+	grid-column-gap: 1rem;
+	padding: 1em;
+	height: 100vh;
 
-}
-
-.dialogs__items {
+	max-width: 750px;
 }
 
 .dialog {
-    display: grid;
-    grid-template-rows: 2fr 1fr;
+	display: grid;
+	grid-template-rows: 2fr 1fr;
 }
 
-.dialog > textarea {
-    resize: none;
-    outline: none;
-    margin-top: 1rem;
+.dialog>textarea {
+	resize: none;
+	outline: none;
+	margin-top: 1rem;
 }
 
 .person {
-    border-top: 1px solid #424242;
+	border-top: 1px solid #424242;
 }
 
 .person a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 1.5em;
+	color: #fff;
+	text-decoration: none;
+	font-size: 18px;
+	line-height: 1.5em;
 }
 
 .person.active {
-    color: #31f191;
+	color: #31f191;
 }
 
-.dialog__messages {
-}
-
-
+.dialog__messages {}
