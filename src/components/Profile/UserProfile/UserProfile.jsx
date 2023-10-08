@@ -1,7 +1,7 @@
 import React from "react"
-import user from "./User.module.css"
+import user from "./UserProfile.module.css"
 
-const User = (props) => {
+const UserProfile = (props) => {
 	const data = props.state.user1
 	return (
 		<div className={`${user.user__profile} block`}>
@@ -17,4 +17,4 @@ const User = (props) => {
 	)
 }
 
-export default User
+export default UserProfile

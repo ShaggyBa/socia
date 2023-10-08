@@ -17,6 +17,10 @@ const Sidebar = (props) => {
 					className={navData => navData.isActive ? sidebar.sidebar__link + " " + sidebar.active : sidebar.sidebar__link}>
 					Messages
 				</NavLink></span>
+				<span><NavLink to="/users"
+					className={navData => navData.isActive ? sidebar.sidebar__link + " " + sidebar.active : sidebar.sidebar__link}>
+					Users
+				</NavLink></span>
 				<span><NavLink to="/community"
 					className={navData => navData.isActive ? sidebar.sidebar__link + " " + sidebar.active : sidebar.sidebar__link}>
 					Community

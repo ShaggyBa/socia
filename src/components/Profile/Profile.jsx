@@ -1,16 +1,16 @@
 import React from "react"
 import profile from "./Profile.module.css"
 import MyPostsContainer from "./Posts/MyPosts-container";
-import UserContainer from "./User/User-container";
+import UserContainer from "./UserProfile/UserProfile-container";
 
 const Profile = () => {
-    return (
-        <div className={profile.container}>
-            <UserContainer/>
-            <MyPostsContainer/>
+	return (
+		<div className={profile.container}>
+			<UserContainer />
+			<MyPostsContainer />
 
-        </div>
-    )
+		</div>
+	)
 }
 
 export default Profile

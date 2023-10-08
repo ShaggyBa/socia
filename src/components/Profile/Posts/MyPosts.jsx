@@ -24,7 +24,7 @@ const MyPosts = (props) => {
 					<textarea className={posts.textArea}
 						onChange={onPostChange}
 						ref={textAreaRef} value={textAreaValue} />
-					<button className={posts.btnAdd} onClick={onAddPost}>Add</button>
+					<button className={'btn'} onClick={onAddPost}>Add</button>
 				</div>
 				<div className={posts.posts}>
 					{props.state.postsData.map((post, index) => {

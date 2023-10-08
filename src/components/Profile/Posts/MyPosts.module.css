@@ -21,7 +21,11 @@
 
 .textArea {
 	padding: 1rem;
+	margin-right: 3rem;
+
 	width: 100%;
+
+	max-width: 450px;
 
 	resize: none;
 	border-radius: 10px;
@@ -38,24 +42,4 @@
 
 .textArea:focus {
 	box-shadow: 1px 1px 5px 5px darkslateblue;
-}
-
-.btnAdd {
-	margin-left: 2rem;
-	min-width: 200px;
-	border-radius: 10px;
-	padding: 14px 20px;
-	font-size: 20px;
-	color: darkslateblue;
-	background-color: #e4e4e4;
-	cursor: pointer;
-
-	transition: all .15s linear;
-
-	border: none;
-}
-
-.btnAdd:active {
-	background-color: darkslateblue;
-	color: #e4e4e4;
 }

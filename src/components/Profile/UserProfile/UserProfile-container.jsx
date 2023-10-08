@@ -1,5 +1,5 @@
 import React from "react"
-import User from "./User";
+import UserProfile from "./UserProfile";
 import { connect } from "react-redux";
 
 const UserContainer = connect(
@@ -10,6 +10,6 @@ const UserContainer = connect(
 	},
 	dispatch => {
 		return {}
-	})(User)
+	})(UserProfile)
 
 export default UserContainer
