@@ -1,7 +1,17 @@
 import React from "react";
 import s from "./Users.module.css"
 
-export const Users = ({ users, totalUsersCount, pageSize, currentPage, unfollow, follow, onChangePage }) => {
+export const Users = (
+	{
+		users,
+		totalUsersCount,
+		pageSize,
+		currentPage,
+		unfollow,
+		follow,
+		onChangePage,
+		loadingStatus
+	}) => {
 	let pageCount = Math.ceil(totalUsersCount / pageSize);
 
 	let pages = [];
@@ -9,34 +19,36 @@ export const Users = ({ users, totalUsersCount, pageSize, currentPage, unfollow,
 		pages.push(i);
 	}
 	return (
-		<div className={s.users}>
-			{users.map((user, index) => (
-				<div key={index} className={`${s.users__item} block`}>
-					<div className={s.users__name}>
-						<p>{user.name}</p>
-						<img src={user.photos.small || "https://placehold.co/150x150"} alt="изображение профиля" />
-					</div>
-					<div className={s.users__info}>
-						<p>Status: <i>{user.status || `Hi, I'm ${user.name}`}</i></p>
-						< p >
-							Location: {"user.location.city"}, {"user.location.country"}
-						</p >
-						<button className="btn" onClick={() => (user.isFollowed ? unfollow(user.id) : follow(user.id))}>
-							{user.isFollowed ? "Follow" : "Unfollow"}
-						</button>
+		loadingStatus
+			? <div className={s.users}>
+				{users.map((user, index) => (
+					<div key={index} className={`${s.users__item} block`}>
+						<div className={s.users__name}>
+							<p>{user.name}</p>
+							<img src={user.photos.small || "https://placehold.co/150x150"} alt="изображение профиля" />
+						</div>
+						<div className={s.users__info}>
+							<p>Status: <i>{user.status || `Hi, I'm ${user.name}`}</i></p>
+							< p >
+								Location: {"user.location.city"}, {"user.location.country"}
+							</p >
+							<button className="btn" onClick={() => (user.isFollowed ? unfollow(user.id) : follow(user.id))}>
+								{user.isFollowed ? "Follow" : "Unfollow"}
+							</button>
+						</div >
 					</div >
-				</div >
-			))
-			}
+				))
+				}
 
-			<div className={s.pagination}>
-				{pageCount && (
-					pages.map(page => <span key={page}
-						onClick={() => onChangePage(page)}
-						className={currentPage === page ? s.selectedPage : ""}>{page}</span>)
-				)}
-			</div>
-		</div >
+				<div className={s.pagination}>
+					{pageCount && (
+						pages.map(page => <span key={page}
+							onClick={() => onChangePage(page)}
+							className={currentPage === page ? s.selectedPage : ""}>{page}</span>)
+					)}
+				</div>
+			</div >
+			: <p className={s.loading}></p>
 	);
 }
 
