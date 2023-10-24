@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 const UserContainer = connect(
 	state => {
 		return {
-			state: state.profilePage.users
+			state: state.profilePage.user
 		}
 	},
 	dispatch => {

@@ -31,6 +31,11 @@
 	max-width: 35%;
 }
 
+.users__name a {
+	text-decoration: none;
+	color: inherit;
+}
+
 .users__name img {
 	margin: 0 auto;
 	width: 150px;

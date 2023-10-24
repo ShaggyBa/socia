@@ -1,5 +1,6 @@
 import React from "react";
 import s from "./Users.module.css"
+import { NavLink } from "react-router-dom";
 
 export const Users = (
 	{
@@ -24,8 +25,10 @@ export const Users = (
 				{users.map((user, index) => (
 					<div key={index} className={`${s.users__item} block`}>
 						<div className={s.users__name}>
-							<p>{user.name}</p>
-							<img src={user.photos.small || "https://placehold.co/150x150"} alt="изображение профиля" />
+							<NavLink to={`/profile/${user.id}`}>
+								<p>{user.name}</p>
+								<img src={user.photos.small || "https://placehold.co/150x150"} alt="изображение профиля" />
+							</NavLink>
 						</div>
 						<div className={s.users__info}>
 							<p>Status: <i>{user.status || `Hi, I'm ${user.name}`}</i></p>

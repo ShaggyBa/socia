@@ -1,5 +1,4 @@
-import React from "react"
-import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../redux/profileReducer";
+import { addPost, updateNewPostText } from "../../../redux/profileReducer";
 import MyPosts from "./MyPosts";
 import { connect } from "react-redux";
 
@@ -9,11 +8,9 @@ const MyPostsContainer = connect(
 			state: state.profilePage
 		}
 	},
-	(dispatch) => {
-		return {
-			addPost: () => dispatch(addPostActionCreator()),
-			updateNewPost: (text) => dispatch(updateNewPostTextActionCreator(text))
-		}
+	{
+		addPost,
+		updateNewPostText
 	})(MyPosts)
 
 export default MyPostsContainer

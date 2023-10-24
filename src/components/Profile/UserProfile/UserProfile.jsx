@@ -2,16 +2,15 @@ import React from "react"
 import user from "./UserProfile.module.css"
 
 const UserProfile = (props) => {
-	const data = props.state.user1
 	return (
 		<div className={`${user.user__profile} block`}>
 			<div className={user.user__img}>
-				<img src={data.user__img} alt="изображение профиля" />
+				<img src={props.profile.photos.large} alt="изображение профиля" />
 			</div>
 			<div className={user.user__content}>
-				<div className={user.user__name}>{data.user__name}</div>
-				<div className={user.user__status}>{data.user__status}</div>
-				<div className={user.user__info}>{data.user__info}</div>
+				<div className={user.user__name}>{props.profile.fullName}</div>
+				<div className={user.user__status}>{props.profile.lookingForAJob ? "looking for a job" : "not looking for a job"}</div>
+				<div className={user.user__info}>{props.profile.lookingForAJobDescription}</div>
 			</div>
 		</div>
 	)

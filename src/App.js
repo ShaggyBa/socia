@@ -1,6 +1,5 @@
 import './App.css';
 import Header from './components/Header/Header'
-import Profile from './components/Profile/Profile';
 import SidebarContainer from './components/Sidebar/Sidebar-container';
 import { Routes, Route } from "react-router-dom";
 import Settings from "./components/Settings/Settings";
@@ -9,6 +8,7 @@ import Music from "./components/Music/Music";
 import Community from "./components/Community/Community";
 import DialogsContainer from './components/Dialogs/Dialogs-container';
 import UsersCointainer from './components/Users/UsersContainer';
+import ProfileContainer from './components/Profile/ProfileContainer';
 
 const App = (props) => {
 	return (
@@ -18,8 +18,11 @@ const App = (props) => {
 				<SidebarContainer />
 				<div className={"app-wrapper-content"}>
 					<Routes>
-						<Route path="/*" element={
-							<Profile />} />
+						<Route path="/" element={<ProfileContainer />}>
+							<Route path="/profile" element={<ProfileContainer />}>
+								<Route path=":userId?" element={<ProfileContainer />} />
+							</Route>
+						</Route>
 						<Route path="/dialogs/*" element={
 							<DialogsContainer />} />
 						<Route path="/community" element={<Community />} />

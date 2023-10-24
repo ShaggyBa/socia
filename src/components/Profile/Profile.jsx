@@ -1,15 +1,20 @@
 import React from "react"
 import profile from "./Profile.module.css"
 import MyPostsContainer from "./Posts/MyPosts-container";
-import UserContainer from "./UserProfile/UserProfile-container";
+import UserProfile from "./UserProfile/UserProfile";
 
-const Profile = () => {
+const Profile = (props) => {
 	return (
-		<div className={profile.container}>
-			<UserContainer />
-			<MyPostsContainer />
+		!props.profile
+			? <div className={profile.container}>
+				<UserProfile profile={props.defaultProfile.user1} />
+				<MyPostsContainer />
+			</div>
+			: <div className={profile.container}>
+				<UserProfile profile={props.profile} />
+				<MyPostsContainer />
+			</div>
 
-		</div>
 	)
 }
 

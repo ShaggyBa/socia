@@ -2,12 +2,12 @@ import { Component } from "react";
 import axios from "axios"
 import { connect } from "react-redux";
 import {
-	followToUserStateActionCreator,
-	unfollowToUserStateActionCreator,
-	setUsersActionCreator,
-	setCurrentPageActionCreator,
-	setTotalUsersCountActionCreator,
-	setLoadingStatusActionCreator
+	followToUserState,
+	unfollowToUserState,
+	setUsers,
+	setCurrentPage,
+	setTotalUsersCount,
+	setLoadingStatus
 } from "../../redux/usersReducer";
 import Users from "./Users";
 
@@ -53,13 +53,11 @@ export default connect(
 			isLoading: state.usersPage.isLoading
 		}
 	},
-	dispatch => {
-		return {
-			setUsers: (users) => dispatch(setUsersActionCreator(users)),
-			follow: (id) => dispatch(followToUserStateActionCreator(id)),
-			unfollow: (id) => dispatch(unfollowToUserStateActionCreator(id)),
-			setPage: (page) => dispatch(setCurrentPageActionCreator(page)),
-			setTotalUsersCount: (totalCount) => dispatch(setTotalUsersCountActionCreator(totalCount)),
-			setLoading: (isLoading) => dispatch(setLoadingStatusActionCreator(isLoading))
-		}
+	{
+		setUsers: setUsers,
+		follow: followToUserState,
+		unfollow: unfollowToUserState,
+		setPage: setCurrentPage,
+		setTotalUsersCount: setTotalUsersCount,
+		setLoading: setLoadingStatus
 	})(UsersContainer);

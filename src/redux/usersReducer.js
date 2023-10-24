@@ -63,37 +63,37 @@ export const usersReducer = (state = initialState, action) => {
 
 }
 
-export const followToUserStateActionCreator = (id) =>
+export const followToUserState = (id) =>
 ({
 	id: id,
 	type: FOLLOW_TO_USER
 })
 
-export const unfollowToUserStateActionCreator = (id) =>
+export const unfollowToUserState = (id) =>
 ({
 	id: id,
 	type: UNFOLLOW_TO_USER,
 })
 
-export const setUsersActionCreator = (users) =>
+export const setUsers = (users) =>
 ({
 	users,
 	type: SET_USERS,
 })
 
-export const setCurrentPageActionCreator = (currentPage) =>
+export const setCurrentPage = (currentPage) =>
 ({
 	currentPage,
 	type: SET_CURRENT_PAGE,
 })
 
-export const setTotalUsersCountActionCreator = (totalCount) =>
+export const setTotalUsersCount = (totalCount) =>
 ({
 	totalCount: totalCount > 100 ? 100 : totalCount,
 	type: SET_TOTAL_USERS_COUNT,
 })
 
-export const setLoadingStatusActionCreator = (isLoading) =>
+export const setLoadingStatus = (isLoading) =>
 ({
 	isLoading,
 	type: SET_LOADING_STATUS,
