@@ -10,7 +10,6 @@ import { setUserProfile } from "../../redux/profileReducer";
 
 class ProfileContainer extends React.Component {
 	componentDidMount() {
-		debugger
 		const userId = this.props.router.params.userId
 		axios.
 			get(`https://social-network.samuraijs.com/api/1.0/profile${userId ? "/" + userId : ""}`).then(responce => {
