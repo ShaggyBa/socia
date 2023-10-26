@@ -4,32 +4,19 @@ import { connect } from "react-redux";
 import {
 	followToUserState,
 	unfollowToUserState,
-	setUsers,
 	setCurrentPage,
-	setTotalUsersCount,
-	setLoadingStatus,
-	setFollowingIsChanging
+	setFollowingIsChanging, getUsers
 } from "../../redux/usersReducer";
 import Users from "./Users";
 
 class UsersContainer extends Component {
 	componentDidMount() {
-		usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
-
-			this.props.setUsers(data.items);
-			this.props.setTotalUsersCount(data.totalCount);
-			this.props.setLoading(true);
-		});
+		this.props.getUsers(this.props.currentPage, this.props.pageSize)
 	}
 
 	onChangePage = (pageNumber) => {
-		this.props.setPage(pageNumber);
-		this.props.setLoading(false);
-
-		usersAPI.getUsers(pageNumber, this.props.pageSize).then((data) => {
-			this.props.setUsers(data.items);
-			this.props.setLoading(true);
-		});
+		this.props.getUsers(pageNumber, this.props.pageSize)
+		this.props.setPage(pageNumber)
 	}
 
 	onUnFollow = (userId) => {
@@ -79,12 +66,10 @@ export default connect(
 		}
 	},
 	{
-		setUsers: setUsers,
 		follow: followToUserState,
 		unfollow: unfollowToUserState,
 		setPage: setCurrentPage,
-		setTotalUsersCount: setTotalUsersCount,
-		setLoading: setLoadingStatus,
-		setFollowingIsChanging: setFollowingIsChanging
+		setFollowingIsChanging: setFollowingIsChanging,
+		getUsers
 
 	})(UsersContainer);

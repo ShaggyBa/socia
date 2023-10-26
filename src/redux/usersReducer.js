@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api";
+
 const FOLLOW_TO_USER = "FOLLOW-TO-USER"
 const UNFOLLOW_TO_USER = "UNFOLLOW-TO-USER"
 const SET_USERS = "SET-USERS"
@@ -111,3 +113,20 @@ export const setFollowingIsChanging = (followingIsChanging) =>
 	followingIsChanging,
 	type: SET_FOLLOWING_IS_CHANGING
 })
+
+export const getUsers = (currentPage, pageSize) => {
+
+
+	return (dispatch) => {
+		dispatch(setLoadingStatus(true));
+
+		usersAPI.getUsers(currentPage, pageSize).then((data) => {
+
+			dispatch(setUsers(data.items));
+			dispatch(setTotalUsersCount(data.totalCount));
+
+			dispatch(setLoadingStatus(false));
+
+		});
+	}
+}
