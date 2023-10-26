@@ -7,11 +7,19 @@
 	border-bottom: 1px solid #292929;
 
 	padding: 1rem;
+
+	display: flex;
+	justify-content: space-between;
 }
 
 .header a {
 	display: block;
 	font-size: 1.5rem;
 	text-decoration: none;
+	color: #e4e4e4;
+}
+
+.auth {
+	font-size: 20px;
 	color: #e4e4e4;
 }

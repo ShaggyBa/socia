@@ -11,7 +11,8 @@ export const Users = (
 		unfollow,
 		follow,
 		onChangePage,
-		loadingStatus
+		loadingStatus,
+		followingIsChanging
 	}) => {
 	let pageCount = Math.ceil(totalUsersCount / pageSize);
 
@@ -19,6 +20,8 @@ export const Users = (
 	for (let i = 1; i <= pageCount; i++) {
 		pages.push(i);
 	}
+
+
 	return (
 		loadingStatus
 			? <div className={s.users}>
@@ -35,9 +38,10 @@ export const Users = (
 							< p >
 								Location: {"user.location.city"}, {"user.location.country"}
 							</p >
-							<button className="btn" onClick={() => (user.isFollowed ? unfollow(user.id) : follow(user.id))}>
-								{user.isFollowed ? "Follow" : "Unfollow"}
-							</button>
+							{user.followed
+								? <button className="btn" disabled={followingIsChanging} onClick={() => unfollow(user.id)}>Unfollow</button>
+								: <button className="btn" disabled={followingIsChanging} onClick={() => follow(user.id)}>Follow</button>
+							}
 						</div >
 					</div >
 				))

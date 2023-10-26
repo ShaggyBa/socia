@@ -1,5 +1,5 @@
 import { Component } from "react";
-import axios from "axios"
+import { usersAPI } from "../../api/api";
 import { connect } from "react-redux";
 import {
 	followToUserState,
@@ -7,15 +7,17 @@ import {
 	setUsers,
 	setCurrentPage,
 	setTotalUsersCount,
-	setLoadingStatus
+	setLoadingStatus,
+	setFollowingIsChanging
 } from "../../redux/usersReducer";
 import Users from "./Users";
 
 class UsersContainer extends Component {
 	componentDidMount() {
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then((response) => {
-			this.props.setUsers(response.data.items);
-			this.props.setTotalUsersCount(response.data.totalCount);
+		usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
+
+			this.props.setUsers(data.items);
+			this.props.setTotalUsersCount(data.totalCount);
 			this.props.setLoading(true);
 		});
 	}
@@ -23,10 +25,32 @@ class UsersContainer extends Component {
 	onChangePage = (pageNumber) => {
 		this.props.setPage(pageNumber);
 		this.props.setLoading(false);
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then((response) => {
-			this.props.setUsers(response.data.items);
+
+		usersAPI.getUsers(pageNumber, this.props.pageSize).then((data) => {
+			this.props.setUsers(data.items);
 			this.props.setLoading(true);
 		});
+	}
+
+	onUnFollow = (userId) => {
+		this.props.setFollowingIsChanging(true);
+
+		usersAPI.unFollow(userId).then((response) => {
+			this.props.setFollowingIsChanging(false);
+			if (response.data.resultCode === 0)
+				this.props.unfollow(userId)
+
+		})
+	}
+
+	onFollow = (userId) => {
+		this.props.setFollowingIsChanging(true);
+
+		usersAPI.follow(userId).then(data => {
+			this.props.setFollowingIsChanging(false);
+			if (data.resultCode === 0)
+				this.props.follow(userId)
+		})
 	}
 
 	render() {
@@ -35,8 +59,8 @@ class UsersContainer extends Component {
 			pageSize={this.props.pageSize}
 			currentPage={this.props.currentPage}
 			users={this.props.users}
-			follow={this.props.follow}
-			unfollow={this.props.unfollow}
+			follow={this.onFollow}
+			unfollow={this.onUnFollow}
 			onChangePage={this.onChangePage}
 			loadingStatus={this.props.isLoading} />)
 	}
@@ -50,7 +74,8 @@ export default connect(
 			pageSize: state.usersPage.pageSize,
 			totalUsersCount: state.usersPage.totalUsersCount,
 			currentPage: state.usersPage.currentPage,
-			isLoading: state.usersPage.isLoading
+			isLoading: state.usersPage.isLoading,
+			followingIsChanging: state.usersPage.followingIsChanging
 		}
 	},
 	{
@@ -59,5 +84,7 @@ export default connect(
 		unfollow: unfollowToUserState,
 		setPage: setCurrentPage,
 		setTotalUsersCount: setTotalUsersCount,
-		setLoading: setLoadingStatus
+		setLoading: setLoadingStatus,
+		setFollowingIsChanging: setFollowingIsChanging
+
 	})(UsersContainer);

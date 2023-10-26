@@ -4,6 +4,7 @@ const SET_USERS = "SET-USERS"
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE"
 const SET_TOTAL_USERS_COUNT = "SET-TOTAL-USERS-COUNT"
 const SET_LOADING_STATUS = "SET-LOADING-STATUS"
+const SET_FOLLOWING_IS_CHANGING = "SET-FOLLOWING-IS-CHANGING"
 
 const initialState = {
 	users: [
@@ -12,7 +13,8 @@ const initialState = {
 	pageSize: 5,
 	currentPage: 1,
 	totalUsersCount: null,
-	isLoading: false
+	isLoading: false,
+	followingIsChanging: false
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -57,6 +59,11 @@ export const usersReducer = (state = initialState, action) => {
 				...state,
 				isLoading: action.isLoading
 			}
+		case SET_FOLLOWING_IS_CHANGING:
+			return {
+				...state,
+				followingIsChanging: action.followingIsChanging
+			}
 		default:
 			return { ...state }
 	}
@@ -97,4 +104,10 @@ export const setLoadingStatus = (isLoading) =>
 ({
 	isLoading,
 	type: SET_LOADING_STATUS,
+})
+
+export const setFollowingIsChanging = (followingIsChanging) =>
+({
+	followingIsChanging,
+	type: SET_FOLLOWING_IS_CHANGING
 })
