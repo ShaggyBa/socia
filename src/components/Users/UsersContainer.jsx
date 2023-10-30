@@ -1,11 +1,10 @@
 import { Component } from "react";
-import { usersAPI } from "../../api/api";
 import { connect } from "react-redux";
 import {
-	followToUserState,
-	unfollowToUserState,
+	follow,
+	unfollow,
 	setCurrentPage,
-	setFollowingIsChanging, getUsers
+	setsubscriptionChanges, getUsers
 } from "../../redux/usersReducer";
 import Users from "./Users";
 
@@ -19,37 +18,19 @@ class UsersContainer extends Component {
 		this.props.setPage(pageNumber)
 	}
 
-	onUnFollow = (userId) => {
-		this.props.setFollowingIsChanging(true);
-
-		usersAPI.unFollow(userId).then((response) => {
-			this.props.setFollowingIsChanging(false);
-			if (response.data.resultCode === 0)
-				this.props.unfollow(userId)
-
-		})
-	}
-
-	onFollow = (userId) => {
-		this.props.setFollowingIsChanging(true);
-
-		usersAPI.follow(userId).then(data => {
-			this.props.setFollowingIsChanging(false);
-			if (data.resultCode === 0)
-				this.props.follow(userId)
-		})
-	}
-
 	render() {
 		return (<Users
 			totalUsersCount={this.props.totalUsersCount}
 			pageSize={this.props.pageSize}
 			currentPage={this.props.currentPage}
 			users={this.props.users}
-			follow={this.onFollow}
-			unfollow={this.onUnFollow}
+			follow={this.props.follow}
+			unfollow={this.props.unfollow}
 			onChangePage={this.onChangePage}
-			loadingStatus={this.props.isLoading} />)
+			loadingStatus={this.props.isLoading}
+			subscriptionChanges={this.props.subscriptionChanges}
+
+		/>)
 	}
 
 }
@@ -62,14 +43,14 @@ export default connect(
 			totalUsersCount: state.usersPage.totalUsersCount,
 			currentPage: state.usersPage.currentPage,
 			isLoading: state.usersPage.isLoading,
-			followingIsChanging: state.usersPage.followingIsChanging
+			subscriptionChanges: state.usersPage.subscriptionChanges
 		}
 	},
 	{
-		follow: followToUserState,
-		unfollow: unfollowToUserState,
+		follow,
+		unfollow,
 		setPage: setCurrentPage,
-		setFollowingIsChanging: setFollowingIsChanging,
+		setsubscriptionChanges,
 		getUsers
 
 	})(UsersContainer);

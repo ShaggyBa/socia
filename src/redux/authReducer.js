@@ -1,3 +1,5 @@
+import { headerAPI } from "../api/api";
+
 const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA"
 
 const initialState = {
@@ -31,3 +33,12 @@ export const setAuthUserData = (userId, email, login) =>
 	},
 	type: SET_AUTH_USER_DATA
 })
+
+export const userAuth = () => (dispatch) => {
+	headerAPI.auth().then(data => {
+		if (data.resultCode === 0) {
+			const { id, email, login } = data.data
+			dispatch(setAuthUserData(id, email, login))
+		}
+	})
+}

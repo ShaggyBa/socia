@@ -1,4 +1,4 @@
-import {usersAPI} from "../api/api";
+import { usersAPI } from "../api/api";
 
 const FOLLOW_TO_USER = "FOLLOW-TO-USER"
 const UNFOLLOW_TO_USER = "UNFOLLOW-TO-USER"
@@ -16,7 +16,7 @@ const initialState = {
 	currentPage: 1,
 	totalUsersCount: null,
 	isLoading: false,
-	followingIsChanging: false
+	subscriptionChanges: false
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -26,7 +26,7 @@ export const usersReducer = (state = initialState, action) => {
 				...state,
 				users: state.users.map(user => {
 					if (user.id === action.id) {
-						return { ...user, isFollowed: true }
+						return { ...user, followed: true }
 					}
 					return user
 				})
@@ -36,7 +36,7 @@ export const usersReducer = (state = initialState, action) => {
 				...state,
 				users: state.users.map(user => {
 					if (user.id === action.id) {
-						return { ...user, isFollowed: false }
+						return { ...user, followed: false }
 					}
 					return user
 				})
@@ -64,7 +64,7 @@ export const usersReducer = (state = initialState, action) => {
 		case SET_FOLLOWING_IS_CHANGING:
 			return {
 				...state,
-				followingIsChanging: action.followingIsChanging
+				subscriptionChanges: action.subscriptionChanges
 			}
 		default:
 			return { ...state }
@@ -108,9 +108,9 @@ export const setLoadingStatus = (isLoading) =>
 	type: SET_LOADING_STATUS,
 })
 
-export const setFollowingIsChanging = (followingIsChanging) =>
+export const setsubscriptionChanges = (subscriptionChanges) =>
 ({
-	followingIsChanging,
+	subscriptionChanges,
 	type: SET_FOLLOWING_IS_CHANGING
 })
 
@@ -128,5 +128,32 @@ export const getUsers = (currentPage, pageSize) => {
 			dispatch(setLoadingStatus(false));
 
 		});
+	}
+}
+
+export const unfollow = (userId) => {
+
+	return (dispatch) => {
+
+		dispatch(setsubscriptionChanges(true));
+
+		usersAPI.unFollow(userId).then((data) => {
+			dispatch(setsubscriptionChanges(false));
+			if (data.resultCode === 0)
+				dispatch(unfollowToUserState(userId))
+
+		})
+	}
+}
+
+export const follow = (userId) => {
+	return (dispatch) => {
+		dispatch(setsubscriptionChanges(true));
+
+		usersAPI.follow(userId).then(data => {
+			dispatch(setsubscriptionChanges(false));
+			if (data.resultCode === 0)
+				dispatch(followToUserState(userId))
+		})
 	}
 }
