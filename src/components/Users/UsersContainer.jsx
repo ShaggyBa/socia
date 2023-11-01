@@ -7,6 +7,8 @@ import {
 	setsubscriptionChanges, getUsers
 } from "../../redux/usersReducer";
 import Users from "./Users";
+import { authRedirectComponent } from "../../hoc/authRedirect";
+import { compose } from "redux";
 
 class UsersContainer extends Component {
 	componentDidMount() {
@@ -35,22 +37,25 @@ class UsersContainer extends Component {
 
 }
 
-export default connect(
-	state => {
-		return {
-			users: state.usersPage.users,
-			pageSize: state.usersPage.pageSize,
-			totalUsersCount: state.usersPage.totalUsersCount,
-			currentPage: state.usersPage.currentPage,
-			isLoading: state.usersPage.isLoading,
-			subscriptionChanges: state.usersPage.subscriptionChanges
-		}
-	},
-	{
-		follow,
-		unfollow,
-		setPage: setCurrentPage,
-		setsubscriptionChanges,
-		getUsers
+export default compose(
+	connect(
+		state => {
+			return {
+				users: state.usersPage.users,
+				pageSize: state.usersPage.pageSize,
+				totalUsersCount: state.usersPage.totalUsersCount,
+				currentPage: state.usersPage.currentPage,
+				isLoading: state.usersPage.isLoading,
+				subscriptionChanges: state.usersPage.subscriptionChanges,
+			}
+		},
+		{
+			follow,
+			unfollow,
+			setPage: setCurrentPage,
+			setsubscriptionChanges,
+			getUsers
 
-	})(UsersContainer);
+		}),
+	authRedirectComponent
+)(UsersContainer);
