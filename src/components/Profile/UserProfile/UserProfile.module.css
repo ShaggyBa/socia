@@ -4,6 +4,8 @@
 	align-items: center;
 	column-gap: 5rem;
 	color: #e4e4e4;
+
+	overflow-x: hidden;
 }
 
 .user__img {
@@ -36,4 +38,9 @@
 .user__info {
 	margin-top: 3rem;
 	font-size: 12px;
+}
+
+.user__content {
+	display: flex;
+	flex-direction: column;
 }

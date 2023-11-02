@@ -13,7 +13,7 @@ const MyPosts = (props) => {
 	}
 
 	const onPostChange = () => {
-		props.updateNewPost(textAreaRef.current.value)
+		props.updateNewPostText(textAreaRef.current.value)
 	}
 
 	return (

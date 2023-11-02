@@ -12,6 +12,7 @@
 	display: flex;
 	justify-content: center;
 	gap: .5rem;
+
 }
 
 .app-wrapper-content {
@@ -63,4 +64,13 @@
 
 a {
 	text-decoration: none;
+}
+
+.input-field {
+	margin: .5rem 0;
+	outline: none;
+	padding: 7px 10px;
+	border-radius: 5px;
+	font-size: 16px;
+	border: none;
 }
