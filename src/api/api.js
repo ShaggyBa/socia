@@ -15,13 +15,16 @@ export const usersAPI = {
 	unFollow: (userId) => instance.delete(`follow/${userId}`, {}).then(responce => responce.data)
 }
 
-export const headerAPI = {
-	auth: () => instance.get(`auth/me`).then(responce => responce.data),
-}
-
 export const profileAPI = {
 	getProfile: (userId) => instance.get(`profile/${userId}`).then(responce => responce.data),
 	getStatus: (userId) => instance.get(`profile/status/${userId}`).then(responce => responce.data),
 	updateStatus: (status) => instance.put(`profile/status`, { status }).then(responce => responce.data),
+
+}
+
+export const loginAPI = {
+	auth: () => instance.get(`auth/me`).then(responce => responce.data),
+	userLogin: (email, password, rememberMe = false) => instance.post(`auth/login`, { email, password, rememberMe }).then(responce => responce.data),
+	userLogout: () => instance.delete(`auth/login`).then(responce => responce.data),
 
 }

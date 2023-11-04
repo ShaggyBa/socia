@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 
 import { connect } from "react-redux";
-import { userAuth } from "../../redux/authReducer";
+import { userAuth, userLogout } from "../../redux/authReducer";
 
 class HeaderContainer extends React.Component {
 	componentDidMount() {
@@ -19,6 +19,7 @@ export default connect(
 		name: state.auth.login,
 	}),
 	{
-		userAuth
+		userAuth,
+		userLogout
 	}
 )(HeaderContainer)

@@ -1,0 +1,22 @@
+.container {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+h1 {
+	color: #e4e4e4;
+}
+
+
+.form {
+	color: #e4e4e4;
+}
+
+.form label {
+	margin-left: 1rem;
+}
+
+.form button {
+	margin: 1rem auto;
+}
