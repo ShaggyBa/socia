@@ -9,8 +9,12 @@ import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
 	componentDidMount() {
-		const userId = this.props.router.params.userId
-		this.props.getUserProfile(userId)
+		let currentUserId = this.props.router.params.userId
+		if (!currentUserId)
+			currentUserId = this.props.userId
+
+		this.props.getUserProfile(currentUserId)
+
 		this.props.getStatus(2)
 	}
 	render() {
@@ -25,7 +29,9 @@ export default compose(
 			return {
 				defaultProfile: state.profilePage.defaultUser,
 				profile: state.profilePage.profile,
-				status: state.profilePage.status
+				status: state.profilePage.status,
+				userId: state.auth.id,
+				isAuth: state.auth.isAuth
 			}
 		},
 		{

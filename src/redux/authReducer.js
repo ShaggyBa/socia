@@ -36,7 +36,7 @@ export const setAuthUserData = (userId, email, login, isAuth) =>
 })
 
 export const userAuth = () => (dispatch) => {
-	loginAPI.auth().then(data => {
+	return loginAPI.auth().then(data => {
 		if (data.resultCode === 0) {
 			const { id, email, login } = data.data
 			dispatch(setAuthUserData(id, email, login, true))
@@ -44,11 +44,16 @@ export const userAuth = () => (dispatch) => {
 	})
 }
 
-export const userLogin = (email, password, rememberMe = false) => (dispatch) => {
+export const userLogin = ({ email, password, rememberMe = false }, submitProps) => (dispatch) => {
 	loginAPI.userLogin(email, password).then((data) => {
 		console.log(data)
 		if (data.resultCode === 0) {
 			dispatch(userAuth())
+			submitProps.resetForm()
+		}
+		else {
+			submitProps.setErrors({ general: data.messages[0] })
+			submitProps.setSubmitting(false)
 		}
 	})
 }
