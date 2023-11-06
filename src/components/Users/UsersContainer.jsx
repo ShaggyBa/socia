@@ -9,6 +9,14 @@ import {
 import Users from "./Users";
 import { authRedirectComponent } from "../../hoc/authRedirect";
 import { compose } from "redux";
+import {
+	getUsersSelector,
+	getPageSizeSelector,
+	getTotalUsersCountSelector,
+	getCurrentPageSelector,
+	getIsLoadingSelector,
+	getSubscriptionChangesSelector,
+} from '../../selectors/UsersSelectors';
 
 class UsersContainer extends Component {
 	componentDidMount() {
@@ -41,12 +49,12 @@ export default compose(
 	connect(
 		state => {
 			return {
-				users: state.usersPage.users,
-				pageSize: state.usersPage.pageSize,
-				totalUsersCount: state.usersPage.totalUsersCount,
-				currentPage: state.usersPage.currentPage,
-				isLoading: state.usersPage.isLoading,
-				subscriptionChanges: state.usersPage.subscriptionChanges,
+				users: getUsersSelector(state),
+				pageSize: getPageSizeSelector(state),
+				totalUsersCount: getTotalUsersCountSelector(state),
+				currentPage: getCurrentPageSelector(state),
+				isLoading: getIsLoadingSelector(state),
+				subscriptionChanges: getSubscriptionChangesSelector(state),
 			}
 		},
 		{

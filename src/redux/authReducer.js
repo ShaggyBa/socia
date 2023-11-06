@@ -46,7 +46,6 @@ export const userAuth = () => (dispatch) => {
 
 export const userLogin = ({ email, password, rememberMe = false }, submitProps) => (dispatch) => {
 	loginAPI.userLogin(email, password).then((data) => {
-		console.log(data)
 		if (data.resultCode === 0) {
 			dispatch(userAuth())
 			submitProps.resetForm()
