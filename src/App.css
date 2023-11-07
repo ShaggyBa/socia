@@ -74,3 +74,11 @@ a {
 	font-size: 16px;
 	border: none;
 }
+
+.app__loading {
+	color: darkslateblue;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

@@ -25,7 +25,7 @@ class App extends React.Component {
 
 	render() {
 		return !this.props.initialize
-			? <h1>Загрузка</h1>
+			? <h1 className={'app__loading'}>Загрузка</h1>
 			: <div className="app-wrapper">
 				<HeaderContainer />
 				<div className="container">
