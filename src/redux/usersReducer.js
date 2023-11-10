@@ -1,7 +1,6 @@
 import { usersAPI } from "../api/api";
 
-const FOLLOW_TO_USER = "FOLLOW-TO-USER"
-const UNFOLLOW_TO_USER = "UNFOLLOW-TO-USER"
+const SET_FOLLOW_TO_USER = "SET_FOLLOW_TO_USER"
 const SET_USERS = "SET-USERS"
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE"
 const SET_TOTAL_USERS_COUNT = "SET-TOTAL-USERS-COUNT"
@@ -21,22 +20,12 @@ const initialState = {
 
 export const usersReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case FOLLOW_TO_USER:
+		case SET_FOLLOW_TO_USER:
 			return {
 				...state,
 				users: state.users.map(user => {
 					if (user.id === action.id) {
-						return { ...user, followed: true }
-					}
-					return user
-				})
-			}
-		case UNFOLLOW_TO_USER:
-			return {
-				...state,
-				users: state.users.map(user => {
-					if (user.id === action.id) {
-						return { ...user, followed: false }
+						return { ...user, followed: action.follow }
 					}
 					return user
 				})
@@ -72,16 +61,11 @@ export const usersReducer = (state = initialState, action) => {
 
 }
 
-export const followToUserState = (id) =>
+export const setFollowToUserState = (id, follow) =>
 ({
-	id: id,
-	type: FOLLOW_TO_USER
-})
-
-export const unfollowToUserState = (id) =>
-({
-	id: id,
-	type: UNFOLLOW_TO_USER,
+	id,
+	follow,
+	type: SET_FOLLOW_TO_USER,
 })
 
 export const setUsers = (users) =>
@@ -117,43 +101,35 @@ export const setsubscriptionChanges = (subscriptionChanges) =>
 export const getUsers = (currentPage, pageSize) => {
 
 
-	return (dispatch) => {
+	return async (dispatch) => {
 		dispatch(setLoadingStatus(true));
 
-		usersAPI.getUsers(currentPage, pageSize).then((data) => {
+		const data = await usersAPI.getUsers(currentPage, pageSize)
 
-			dispatch(setUsers(data.items));
-			dispatch(setTotalUsersCount(data.totalCount));
+		dispatch(setUsers(data.items));
+		dispatch(setTotalUsersCount(data.totalCount));
 
-			dispatch(setLoadingStatus(false));
-
-		});
+		dispatch(setLoadingStatus(false));
 	}
 }
 
-export const unfollow = (userId) => {
+export const setFollowToUser = (userId, follow) => {
 
-	return (dispatch) => {
+	return async (dispatch) => {
 
 		dispatch(setsubscriptionChanges(true));
 
-		usersAPI.unFollow(userId).then((data) => {
+		if (follow) {
+			const data = await usersAPI.follow(userId)
 			dispatch(setsubscriptionChanges(false));
 			if (data.resultCode === 0)
-				dispatch(unfollowToUserState(userId))
-
-		})
-	}
-}
-
-export const follow = (userId) => {
-	return (dispatch) => {
-		dispatch(setsubscriptionChanges(true));
-
-		usersAPI.follow(userId).then(data => {
+				dispatch(setFollowToUserState(userId, follow))
+		}
+		else {
+			const data = await usersAPI.unFollow(userId)
 			dispatch(setsubscriptionChanges(false));
 			if (data.resultCode === 0)
-				dispatch(followToUserState(userId))
-		})
+				dispatch(setFollowToUserState(userId, follow))
+		}
 	}
 }

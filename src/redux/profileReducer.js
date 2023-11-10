@@ -24,7 +24,7 @@ const profileReducer = (state = initialState, action) => {
 				id: state.postsData.length + 1,
 				post__authorName: "ShaggyBa",
 				post__authorImage: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1213&q=80",
-				post__text: state.values.postState,
+				post__text: action.value,
 				post__likes: 0,
 				post__images: ""
 			}
@@ -41,9 +41,10 @@ const profileReducer = (state = initialState, action) => {
 	}
 }
 
-export const addPost = () =>
+export const addPost = (value = "") =>
 ({
-	type: ADD_POST
+	type: ADD_POST,
+	value
 })
 
 export const updateNewPostText = (value) =>
@@ -63,25 +64,24 @@ export const setUserStatus = (status) => ({
 })
 
 
-export const getUserProfile = (userId) => (dispatch) => {
-	if (userId)
-		profileAPI.getProfile(userId).then(data => {
-			dispatch(setUserProfile(data))
-		})
+export const getUserProfile = (userId) => async (dispatch) => {
+	if (userId) {
+		const data = await profileAPI.getProfile(userId)
+		dispatch(setUserProfile(data))
+	}
 }
 
-export const getStatus = (userId) => (dispatch) => {
-	if (userId)
-		profileAPI.getStatus(userId).then(data => {
-			dispatch(setUserStatus(data))
-		})
+export const getStatus = (userId) => async (dispatch) => {
+	if (userId) {
+		const data = await profileAPI.getStatus(userId)
+		dispatch(setUserStatus(data))
+	}
 }
 
-export const updateStatus = (status) => (dispatch) => {
-	profileAPI.updateStatus(status).then(data => {
-		if (data.resultCode === 0)
-			dispatch(setUserStatus(status))
-	})
+export const updateStatus = (status) => async (dispatch) => {
+	const data = await profileAPI.updateStatus(status)
+	if (data.resultCode === 0)
+		dispatch(setUserStatus(status))
 }
 
 

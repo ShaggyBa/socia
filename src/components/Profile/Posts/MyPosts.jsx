@@ -9,7 +9,7 @@ const MyPosts = (props) => {
 	const textAreaRef = createRef()
 
 	const onAddPost = () => {
-		props.addPost()
+		props.addPost(textAreaValue)
 	}
 
 	const onPostChange = () => {

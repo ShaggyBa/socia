@@ -8,8 +8,7 @@ export const Users = (
 		totalUsersCount,
 		pageSize,
 		currentPage,
-		unfollow,
-		follow,
+		setFollowToUser,
 		onChangePage,
 		loadingStatus,
 		subscriptionChanges,
@@ -39,9 +38,9 @@ export const Users = (
 							</p>
 							{user.followed
 								? <button className="btn" disabled={subscriptionChanges}
-									onClick={() => unfollow(user.id)}>Unfollow</button>
+									onClick={() => setFollowToUser(user.id, false)}>Unfollow</button>
 								: <button className="btn" disabled={subscriptionChanges}
-									onClick={() => follow(user.id)}>Follow</button>
+									onClick={() => setFollowToUser(user.id, true)}>Follow</button>
 							}
 						</div>
 					</div>

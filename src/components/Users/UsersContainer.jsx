@@ -1,8 +1,7 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import {
-	follow,
-	unfollow,
+	setFollowToUser,
 	setCurrentPage,
 	setsubscriptionChanges, getUsers
 } from "../../redux/usersReducer";
@@ -34,8 +33,7 @@ class UsersContainer extends Component {
 			pageSize={this.props.pageSize}
 			currentPage={this.props.currentPage}
 			users={this.props.users}
-			follow={this.props.follow}
-			unfollow={this.props.unfollow}
+			setFollowToUser={this.props.setFollowToUser}
 			onChangePage={this.onChangePage}
 			loadingStatus={this.props.isLoading}
 			subscriptionChanges={this.props.subscriptionChanges}
@@ -58,8 +56,7 @@ export default compose(
 			}
 		},
 		{
-			follow,
-			unfollow,
+			setFollowToUser,
 			setPage: setCurrentPage,
 			setsubscriptionChanges,
 			getUsers

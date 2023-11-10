@@ -17,9 +17,9 @@ const SignupSchema = Yup.object().shape({
 		.max(70, 'Too Long!')
 });
 
-const LoginForm = (props) => {
+const LoginForm = ({ isAuth, userLogin }) => {
 	return (
-		!props.isAuth
+		!isAuth
 			? <div className={s.container}>
 				<h1>Login</h1>
 
@@ -27,7 +27,7 @@ const LoginForm = (props) => {
 					initialValues={{ email: '', password: '' }}
 					validationSchema={SignupSchema}
 					onSubmit={(values, submitProps) => {
-						props.userLogin({ ...values }, submitProps);
+						userLogin({ ...values }, submitProps);
 					}}
 				>
 					{({ errors, touched }) => (
