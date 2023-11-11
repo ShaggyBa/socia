@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/232.15f370a0.chunk.js","mappings":"gKAEA,MAQA,EARgBA,IAER,yBAAK,U","sources":["components/Videos/Videos.jsx"],"sourcesContent":["import React from \"react\";\n\nconst Videos = (props) => {\n    return (\n        <div>\n            Videos\n        </div>\n    )\n}\n\nexport default Videos"],"names":["props"],"sourceRoot":""}

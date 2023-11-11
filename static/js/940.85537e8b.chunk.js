@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunksocial_network=self.webpackChunksocial_network||[]).push([[940],{940:(s,e,c)=>{c.r(e),c.d(e,{default:()=>i});c(791);var a=c(184);const i=s=>(0,a.jsx)("div",{children:"Music"})}}]);
+//# sourceMappingURL=940.85537e8b.chunk.js.map
