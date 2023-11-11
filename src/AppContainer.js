@@ -21,7 +21,7 @@ import { connect } from 'react-redux';
 const AppContainer = (props) => {
 	React.useEffect(() => {
 		props.initializeApp()
-	}, [])
+	}, [props])
 
 	return (
 		<App {...props} />
@@ -33,7 +33,7 @@ export default compose
 		WithRouter,
 		connect(
 			(state) => ({
-				initialize: state.app.initialize
+				initialize: state.app.initialize,
 			}),
 			{
 				initializeApp

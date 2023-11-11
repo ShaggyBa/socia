@@ -15,6 +15,7 @@ import {
 	getCurrentPageSelector,
 	getIsLoadingSelector,
 	getSubscriptionChangesSelector,
+	getPortionSizeSelector,
 } from '../../selectors/UsersSelectors';
 
 class UsersContainer extends Component {
@@ -37,6 +38,7 @@ class UsersContainer extends Component {
 			onChangePage={this.onChangePage}
 			loadingStatus={this.props.isLoading}
 			subscriptionChanges={this.props.subscriptionChanges}
+			portionSize={this.props.portionSize}
 
 		/>)
 	}
@@ -53,6 +55,7 @@ export default compose(
 				currentPage: getCurrentPageSelector(state),
 				isLoading: getIsLoadingSelector(state),
 				subscriptionChanges: getSubscriptionChangesSelector(state),
+				portionSize: getPortionSizeSelector(state),
 			}
 		},
 		{

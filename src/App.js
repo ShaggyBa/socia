@@ -1,17 +1,19 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
 import SidebarContainer from './components/Sidebar/Sidebar-container';
-import Settings from "./components/Settings/Settings";
-import Videos from "./components/Videos/Videos";
-import Music from "./components/Music/Music";
-import Community from "./components/Community/Community";
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
+import WithSuspense from "./hoc/WithSuspense";
 
 import './App.css';
+
+const Settings = React.lazy(() => import('./components/Settings/Settings'));
+const Videos = React.lazy(() => import("./components/Videos/Videos"));
+const Music = React.lazy(() => import("./components/Music/Music"));
+const Community = React.lazy(() => import("./components/Community/Community"));
 
 const App = (props) => {
 
@@ -30,10 +32,18 @@ const App = (props) => {
 								</Route>
 							</Route>
 							<Route path="/dialogs/*" element={<DialogsContainer />} />
-							<Route path="/community" element={<Community />} />
-							<Route path="/music" element={<Music />} />
-							<Route path="/videos" element={<Videos />} />
-							<Route path="/settings" element={<Settings />} />
+							<Route path="/community" element={
+								WithSuspense(Community)({...props})
+							}/>
+							<Route path="/music" element={
+								WithSuspense(Music)({...props})
+							}/>
+							<Route path="/videos" element={
+								WithSuspense(Videos)({...props})
+							}/>
+							<Route path="/settings" element={
+								WithSuspense(Settings)({...props})
+							}/>
 							<Route path="/users" element={<UsersContainer />} />
 							<Route path="/login" element={<Login />} />
 						</Routes>

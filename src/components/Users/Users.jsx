@@ -1,6 +1,8 @@
 import React from "react";
 import s from "./Users.module.css"
 import { NavLink } from "react-router-dom";
+import Pagination from "../Common/Pagination/Pagination";
+import {Preloader} from "../Common/Preloader/Preloader";
 
 export const Users = (
 	{
@@ -12,13 +14,9 @@ export const Users = (
 		onChangePage,
 		loadingStatus,
 		subscriptionChanges,
+		portionSize
 	}) => {
-	let pageCount = Math.ceil(totalUsersCount / pageSize);
 
-	let pages = [];
-	for (let i = 1; i <= pageCount; i++) {
-		pages.push(i);
-	}
 
 	return (
 		!loadingStatus
@@ -47,15 +45,14 @@ export const Users = (
 				))
 				}
 
-				<div className={s.pagination}>
-					{pageCount && (
-						pages.map(page => <span key={page}
-							onClick={() => onChangePage(page)}
-							className={currentPage === page ? s.selectedPage : ""}>{page}</span>)
-					)}
-				</div>
+				<Pagination
+					totalUsersCount={totalUsersCount}
+					pageSize={pageSize}
+					currentPage={currentPage}
+					onChangePage={onChangePage}
+					portionSize={portionSize} />
 			</div>
-			: <p className={s.loading}></p>
+			: <Preloader />
 	);
 }
 

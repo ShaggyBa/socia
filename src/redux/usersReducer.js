@@ -13,6 +13,7 @@ const initialState = {
 	],
 	pageSize: 5,
 	currentPage: 1,
+	portionSize: 10,
 	totalUsersCount: null,
 	isLoading: false,
 	subscriptionChanges: false
@@ -82,7 +83,7 @@ export const setCurrentPage = (currentPage) =>
 
 export const setTotalUsersCount = (totalCount) =>
 ({
-	totalCount: totalCount > 100 ? 100 : totalCount,
+	totalCount: totalCount,
 	type: SET_TOTAL_USERS_COUNT,
 })
 

@@ -1,0 +1,28 @@
+.pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+
+	user-select: none;
+
+	font-size: 20px;
+	color: rgb(38, 119, 69);
+}
+
+.pagination span {
+	cursor: pointer;
+}
+
+.pagination--btn {
+	color: #e4e4e4;
+}
+
+.pagination--btn:disabled {
+	color: #545454;
+}
+
+.selectedPage {
+	color: #e4e4e4;
+	font-size: 22px;
+}
