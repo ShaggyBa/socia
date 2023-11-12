@@ -16,14 +16,15 @@
 
 	flex-shrink: 0;
 	border: 1px solid #292929;
-	border-radius: 50%;
 
-	overflow: hidden;
+	position: relative;
 }
 
 .user__img img {
 	width: 100%;
 	height: 100%;
+	border-radius: 50%;
+	user-select: none;
 }
 
 .user__name {
@@ -43,4 +44,38 @@
 .user__content {
 	display: flex;
 	flex-direction: column;
+}
+
+.profile--actions {
+	position: absolute;
+	left: 0;
+	top: -1rem;
+	z-index: 100;
+	display: flex;
+	flex-direction: column;
+	user-select: none;
+}
+
+.profile--actions svg {
+	cursor: pointer;
+}
+
+.profile--menu {
+	display:none;
+}
+
+.profile--menu-open {
+	display: block;
+	left: 10px;
+	width: 200px;
+	padding: 10px;
+	background: rgba(36, 36, 36, 0.97);
+	border: 1px solid #57555b;
+	border-radius: 5px;
+	color: #31f191;
+}
+
+.uploadImage {
+	width: 100%;
+	color: darkslateblue;
 }
