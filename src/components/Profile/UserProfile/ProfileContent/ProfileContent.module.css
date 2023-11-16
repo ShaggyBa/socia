@@ -1,0 +1,18 @@
+.profile__username {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.profile__status {
+    flex-grow: 1;
+}
+
+.profile__info {
+    margin-top: 3rem;
+    font-size: 12px;
+}
+
+.profile__content {
+    display: flex;
+    flex-direction: column;
+}

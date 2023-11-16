@@ -1,0 +1,19 @@
+.profile__contacts {
+
+}
+
+.contacts {
+
+}
+
+.contacts__item {
+list-style-type: none;
+}
+
+.contacts__item a {
+    display: flex;
+    align-items: center;
+}
+.contacts__item a svg {
+    margin-right: 1rem;
+}

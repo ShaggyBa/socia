@@ -88,6 +88,16 @@ export const updateStatus = (status) => async (dispatch) => {
         dispatch(setUserStatus(status))
 }
 
+export const updateProfile = (profileFields) => async (dispatch, getState) => {
+    const userId = getState().auth.id
+    const data = await profileAPI.updateProfile(profileFields)
+    if (data.resultCode === 0)
+        dispatch(getUserProfile(userId))
+    else {
+        return Promise.reject()
+    }
+}
+
 export const savePhotoSuccess = (photos) => ({
     type: SAVE_PHOTO_SUCCESS,
     photos

@@ -1,7 +1,6 @@
 .user__profile {
 	padding: 1rem;
 	display: flex;
-	align-items: center;
 	column-gap: 5rem;
 	color: #e4e4e4;
 
@@ -15,6 +14,7 @@
 	width: 200px;
 
 	flex-shrink: 0;
+	border-radius: 50%;
 	border: 1px solid #292929;
 
 	position: relative;
@@ -25,25 +25,6 @@
 	height: 100%;
 	border-radius: 50%;
 	user-select: none;
-}
-
-.user__name {
-	font-size: 22px;
-	font-weight: 600;
-}
-
-.user__status {
-	flex-grow: 1;
-}
-
-.user__info {
-	margin-top: 3rem;
-	font-size: 12px;
-}
-
-.user__content {
-	display: flex;
-	flex-direction: column;
 }
 
 .profile--actions {
@@ -67,7 +48,7 @@
 .profile--menu-open {
 	display: block;
 	left: 10px;
-	width: 200px;
+	width: 400px;
 	padding: 10px;
 	background: rgba(36, 36, 36, 0.97);
 	border: 1px solid #57555b;
@@ -78,4 +59,23 @@
 .uploadImage {
 	width: 100%;
 	color: darkslateblue;
+	margin-bottom: 1rem;
+}
+
+.user__info--job {
+	display: flex;
+	flex-direction: column;
+}
+
+.editProfileBtn {
+	border: 1px solid #31f191;
+	border-radius: 10px;
+	padding: 0.5rem;
+	cursor: pointer;
+	color: #31f191;
+}
+
+.editProfileBtn:disabled {
+	opacity: 0.3;
+	pointer-events: none;
 }
